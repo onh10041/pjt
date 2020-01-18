@@ -1,0 +1,67 @@
+<script type="text/javascript">
+$(function(){
+	   $('.left_menu_list li').mouseover(function(){
+		   $(this).css('color','#853100');
+	   });
+});
+$(function(){
+	   $('.left_menu_list li').mouseout(function(){
+		   $(this).css('color','black');
+	   });
+});
+<!-- ==================================================================
+서브메뉴 jquery
+=================================================================  -->
+
+function printClock() {
+ var clock = document.getElementById("clock");            // 출력할 장소 선택
+ var currentDate = new Date();                                     // 현재시간
+ var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+ var amPm = 'AM'; // 초기값 AM
+ var currentHours = addZeros(currentDate.getHours(),2); 
+ var currentMinute = addZeros(currentDate.getMinutes() ,2);
+ var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+ if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+ 	amPm = 'PM';
+ 	currentHours = addZeros(currentHours - 12,2);
+ }
+ clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:20px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+ setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+}
+function addZeros(num, digit) { // 자릿수 맞춰주기
+	  var zero = '';
+	  num = num.toString();
+	  if (num.length < digit) {
+	    for (i = 0; i < digit - num.length; i++) {
+	      zero += '0';
+	    }
+	  }
+	  return zero + num;
+}
+<!-- ================================================================
+	서브메뉴 시계 jQUERY
+================================================================= -->
+</script>
+<style type="text/css">
+#left-menu{position:relative; width:200px; height:320px; border:1px solid silver;
+	font-size:80%;left:355px;z-index:20;float:left;}
+.left_menu_list{list-style:none;font-size:15;}
+.left_menu_list li{margin-bottom:15px; cursor:pointer; height:20px; border-bottom:1px solid silver;}
+</style>
+<!-- ==================================================================================
+여기까지 Sub_menu부분 css
+================================================================================= -->
+<div id="left-menu">
+	<h2>&nbsp;&nbsp;&nbsp;&nbsp;HAMILTON</h2>
+		<ul class="left_menu_list">
+			<li><a href="Dining_Grill" style="color:black;">Grill</a></li>
+			<li><a href="Dining_Hall" style="color:black;">Banquet Hall</a></li>
+			<li><a href="Dining_Meet" style="color:black;">Business Meeting Room</a></li>
+			<li><a href="Dining_Fit" style="color:black;">Fitness Center</a></li>
+			<li><a href="Dining_Sauna" style="color:black;">Sauna</a></li>
+			<li><a href="Dining_Pool" style="color:black;">Outdoor Swimming Pool</a></li>
+		</ul>   
+	<div style=" width:170px; height:50px; line-height:47px;color:#666;font-size:20px; text-align:center;
+		border-radius:40px; position:relative; left:15px; bottom:10px;" id="clock">
+	</div>
+</div>
